@@ -13,4 +13,8 @@
 
 [Airflow Monitoring](<./Airflow monitoring-1588283872430.json>)
 
+ ![](./Airflow monitoring.PNG)
+
 [Pesquisa e comparação de cargas](<./Pesquisar por Tabela-1588283953620.json>)
+
+ ![](./Pesquisar por tabela.PNG)
