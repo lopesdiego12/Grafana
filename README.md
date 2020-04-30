@@ -6,4 +6,4 @@
 
 ### Queries executadas na base de dados do Airflow (postgresql)
 
-[List user](<./listuser.sql>)
+[Queries](<./Airflow_Grafana_Queries.sql>)
