@@ -15,4 +15,5 @@
 
 [Pesquisa e comparação de cargas](<./Pesquisar por Tabela-1588283953620.json>)
 
- ![](./Pesquisar por tabela.PNG)
+
+![image](https://raw.githubusercontent.com/lopesdiego12/Grafana/master/Pesquisar%20por%20tabela.PNG)
