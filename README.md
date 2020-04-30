@@ -11,7 +11,7 @@
 
 ## Arquivo Json para importar o Dashboard com a configuração utilizada
 
-[Airflow Monitoring](<./Airflow monitoring-1588283872430.json>)
+![image](https://raw.githubusercontent.com/lopesdiego12/Grafana/blob/master/Airflow%20monitoring.PNG)
 
  ![](./Airflow monitoring.PNG)
 
