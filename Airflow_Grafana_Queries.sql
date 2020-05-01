@@ -129,7 +129,7 @@ SELECT
 ,ti.task_id as NOME_TASK_AIRFLOW
 --,ti.state as STATUS_JOB
 ,case when ti.state = 'failed' then 1 else 0 end STATUS_JOB
-,concat('http://10.41.21.16/admin/taskinstance/?flt0_task_id_contains=' ) as log
+,concat('http://airflow/admin/taskinstance/?flt0_task_id_contains=' ) as log
 FROM dag_run as dr
 INNER JOIN
 (
