@@ -1,5 +1,5 @@
 --Dags Status
-
+--- table view on grafana
 with 
 dags_processar as (
 	select * from public.dag where dag_id in ('DataMart', 'CDO', 'Campanhas')),
@@ -141,6 +141,7 @@ ON dr.dag_id = ti.dag_id AND dr.execution_date = ti.execution_date
 order by dr.dag_id, dr.execution_date
 
 ---Pesquisa por tabela
+--- time series view on grafana and graph visualization
  SELECT
  EXTRACT (EPOCH from MAX(end_date) - MIN(start_date)) AS duration
  ,end_date as "time"
