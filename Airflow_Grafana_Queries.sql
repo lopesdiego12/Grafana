@@ -148,7 +148,7 @@ order by dr.dag_id, dr.execution_date
  , task_id as metric
        --EXTRACT(EPOCH FROM (coalesce(ti.end_date, current_timestamp) - ti.start_date ))) as last_duration
     FROM  task_instance
-   WHERE  dag_id = 'DataMart'
+   WHERE  dag_id in ($Dags)
 and  state = 'success'
 and  $__timeFilter(execution_date)
 and task_id in ($Pesquisar)
@@ -159,7 +159,7 @@ ORDER BY  end_date DESC
 --- Data e hora de termino por tabela
  SELECT task_id || ' -> ' || to_char(end_date,'YYYY-MM-DD HH24:MI:SS')
     FROM  task_instance
-   WHERE  dag_id = 'DataMart'
+   WHERE  dag_id in ($Dags)
      AND  state = 'success'
 and task_id in ($Pesquisar)
 group by task_id,end_date
@@ -172,7 +172,7 @@ group by task_id,end_date
        ,  MAX(end_date) - MIN(start_date) AS duration
  --      ,  AVG(duration)
     FROM  task_instance
-   WHERE  dag_id = 'DataMart'
+   WHERE  dag_id in ($Dags)
      AND  state = 'success'
      and task_id in ($Pesquisar)
 GROUP BY  execution_date, TASK_ID
