@@ -2,7 +2,7 @@
 --- table view on grafana
 with 
 dags_processar as (
-	select * from public.dag where dag_id in ('DataMart', 'CDO', 'Campanhas')),
+	select * from public.dag where dag_id in ($Dags)),
 task_avg as (
 	-- media de duracao por task
 	select ti.dag_id, ti.task_id, round(avg(ti.duration)) avg_duration_seconds, count(1) total_execution_times 
