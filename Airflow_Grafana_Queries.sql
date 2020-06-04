@@ -177,3 +177,25 @@ group by task_id,end_date
      and task_id in ($Pesquisar)
 GROUP BY  execution_date, TASK_ID
 ORDER BY  execution_date DESC
+
+
+----------------- Pegar log Airflow
+SELECT 
+ dr.dag_id as NOME_DAG
+,LEFT(RIGHT(dr.run_id,25),10)  AS DATA
+,LEFT(RIGHT(dr.run_id,14),8)  AS HORARIO
+,ti.task_id as NOME_TASK_AIRFLOW
+--,ti.state as STATUS_JOB
+,case when ti.state = 'failed' then 1 else 0 end STATUS_JOB
+,'http://10.41.21.16/admin/airflow/log?dag_id=' || dr.dag_id || '&task_id=' || ti.task_id || '&execution_date=' || LEFT(RIGHT(dr.run_id,25),10) ||'T' || LEFT(RIGHT(dr.run_id,14),2) ||'%3A00%3A00' as log
+--,concat('http://10.41.21.16/admin/taskinstance/?flt0_state_equals=failed&flt3_task_id_contains=', ti.task_id) as log 
+--,concat('http://10.41.21.16/admin/taskinstance/?flt0_task_id_contains=' ) as log
+FROM dag_run as dr
+INNER JOIN
+(
+    SELECT dag_id, task_id, state, execution_date
+    FROM task_instance
+    WHERE state = 'failed'  and execution_date > now() - interval '7 day' and dag_id in ($Dags)
+  ) as ti
+ON dr.dag_id = ti.dag_id AND dr.execution_date = ti.execution_date
+order by dr.dag_id, dr.execution_date
